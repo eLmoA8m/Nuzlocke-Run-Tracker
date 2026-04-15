@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="src/output.css" rel="stylesheet">
+</head>
+
+<body class="bg-gray-100 min-h-screen">
+
+    <!-- ===== HEADER ===== -->
+    <header class="bg-primary text-white p-4 shadow-md">
+        <h1 class="text-2xl font-bold text-center">NuzTrack</h1>
+        <p class="text-center text-sm opacity-90">Nuzlocke Tracker</p>
+    </header>
+
+    <!-- ===== MAIN ===== -->
+    <main class="max-w-5xl mx-auto p-4">
+
+        <!-- ===== FORM ===== -->
+        <section class="bg-white rounded-xl shadow p-4 mb-6">
+            <h2 class="text-lg font-semibold mb-3">Add Encounter</h2>
+
+            <form id="form" class="grid md:grid-cols-3 gap-3">
+
+                <!-- Ruta -->
+                <div>
+                    <label class="block text-sm font-medium">Route</label>
+                    <select id="route" class="w-full border rounded-lg p-2">
+                        <option value="">Select route</option>
+                    </select>
+                </div>
+
+                <div class="relative">
+                    <label class="block text-sm font-medium">Pokémon</label>
+
+                    <input id="pokemon" type="text" placeholder="e.g. zigzagoon" autocomplete="off"
+                        class="w-full border rounded-lg p-2">
+
+                    <!-- Dropdown -->
+                    <ul id="pokemon-list"
+                        class="absolute w-full bg-white border rounded-lg mt-1 max-h-40 overflow-y-auto hidden z-10">
+                    </ul>
+                </div>
+
+                <!-- Estado -->
+                <div>
+                    <label class="block text-sm font-medium">Status</label>
+                    <select id="status" class="w-full border rounded-lg p-2">
+                        <option value="alive">Alive</option>
+                        <option value="dead">Dead</option>
+                        <option value="boxed">Boxed</option>
+                    </select>
+                </div>
+
+                <!-- Botón -->
+                <div class="md:col-span-3">
+                    <button type="submit"
+                        class="w-full bg-blue-300 text-black py-2 rounded-lg hover:opacity-90 transition">
+                        Save
+                    </button>
+                </div>
+
+            </form>
+        </section>
+
+        <!-- ===== FILTERS ===== -->
+<!--         <section class="flex gap-2 mb-4 justify-center">
+            <button class="filter-btn bg-primary text-white px-3 py-1 rounded-lg">All</button>
+            <button class="filter-btn bg-green-500 text-white px-3 py-1 rounded-lg">Alive</button>
+            <button class="filter-btn bg-dead text-white px-3 py-1 rounded-lg">Dead</button>
+            <button class="filter-btn bg-boxed text-white px-3 py-1 rounded-lg">Boxed</button>
+        </section> -->
+
+        <!-- ===== CARDS ===== -->
+        <section id="cards" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+            <!-- Aquí se renderizan las cards dinámicamente -->
+        </section>
+
+    </main>
+
+    <!-- ===== TEMPLATE CARD (opcional para JS) ===== -->
+    <template id="card-template">
+        <div class="bg-white rounded-xl shadow p-4 text-center">
+            <img class="w-20 mx-auto mb-2" src="" alt="pokemon">
+            <h3 class="font-bold text-lg pokemon-name"></h3>
+            <p class="text-sm text-gray-500 route-name"></p>
+
+            <span class="status text-sm font-semibold"></span>
+        </div>
+    </template>
+
+    <!-- ===== JS ===== -->
+    <script type="module" src="./js/app.js"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,17 @@
+# Node modules
+node_modules/
+
+# Archivos generados por Tailwind
+src/output.css
+
+# Archivos de build (si usas más herramientas después)
+dist/
+build/
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Archivos de sistema
+.DS_Store
