@@ -1,5 +1,11 @@
 [
     {
+        "id": 0,
+        "name": "Littleroot Town",
+        "type": "town",
+        "zone": "Hoenn"
+    },
+    {
         "id": 1,
         "name": "Route 101",
         "type": "route",

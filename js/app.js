@@ -9,6 +9,19 @@ const form = document.getElementById('form');
 const statusSelect = document.getElementById('status');
 
 let pokemonNames = [];
+let savedData = [];
+
+// ===== LOCAL STORAGE =====
+const STORAGE_KEY = 'nuzlocke-data';
+
+function saveToStorage() {
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(savedData));
+}
+
+function loadFromStorage() {
+  const data = localStorage.getItem(STORAGE_KEY);
+  savedData = data ? JSON.parse(data) : [];
+}
 
 // INIT
 init();
@@ -17,7 +30,12 @@ async function init() {
   try {
     pokemonNames = await getHoennNames();
     const routes = await getRoutes();
+
+    loadFromStorage();
+
     fillRoutes(routes, select);
+    restoreState();
+
   } catch (error) {
     console.error(error);
   }
@@ -31,6 +49,14 @@ function fillRoutes(routes, select) {
     option.textContent = route.name;
 
     select.appendChild(option);
+  });
+}
+
+// RESTAURAR ESTADO
+function restoreState() {
+  savedData.forEach(entry => {
+    renderCard(entry);
+    removeUsedRoute(entry.routeId);
   });
 }
 
@@ -95,7 +121,6 @@ form.addEventListener('submit', async (e) => {
     return;
   }
 
-  // Validar que sea de Hoenn
   if (!pokemonNames.includes(pokemonName)) {
     alert('Invalid Pokémon (must be Hoenn)');
     return;
@@ -104,13 +129,24 @@ form.addEventListener('submit', async (e) => {
   try {
     const pokemon = await getPokemonData(pokemonName);
 
-    renderCard({
+    const entry = {
+      routeId,
+      routeName,
       name: pokemon.name,
       sprite: pokemon.sprite,
-      route: routeName,
       status
-    });
+    };
 
+    // GUARDAR EN MEMORIA
+    savedData.push(entry);
+
+    // GUARDAR EN STORAGE
+    saveToStorage();
+
+    // RENDER
+    renderCard(entry);
+
+    // ELIMINAR RUTA
     removeUsedRoute(routeId);
 
     form.reset();
@@ -123,7 +159,7 @@ form.addEventListener('submit', async (e) => {
 });
 
 // RENDER CARD
-function renderCard({ name, sprite, route, status }) {
+function renderCard({id, name, sprite, routeName, status }) {
   const div = document.createElement('div');
 
   const statusColor = {
@@ -137,15 +173,73 @@ function renderCard({ name, sprite, route, status }) {
   div.innerHTML = `
     <img src="${sprite}" class="w-20 mx-auto mb-2">
     <h3 class="font-bold text-lg capitalize">${name}</h3>
-    <p class="text-sm text-gray-500">${route}</p>
-    <p class="text-sm font-semibold ${statusColor[status]} capitalize">${status}</p>
+    <p class="text-sm text-gray-500">${routeName}</p>
+
+    <select class="status-select border rounded p-1 mt-2">
+      <option value="alive" ${status === 'alive' ? 'selected' : ''}>Alive</option>
+      <option value="dead" ${status === 'dead' ? 'selected' : ''}>Dead</option>
+      <option value="boxed" ${status === 'boxed' ? 'selected' : ''}>Boxed</option>
+    </select>
+
+    <button class="delete-btn mt-3 bg-red-500 text-white px-3 py-1 rounded">
+      Delete
+    </button>
   `;
+
+    // EVENT: cambiar estado
+  const selectStatus = div.querySelector('.status-select');
+  selectStatus.addEventListener('change', (e) => {
+    updateStatus(id, e.target.value);
+  });
+
+  // EVENT: eliminar
+  const deleteBtn = div.querySelector('.delete-btn');
+  deleteBtn.addEventListener('click', () => {
+    deletePokemon(id, div);
+  });
+
 
   cards.appendChild(div);
 }
 
-// ELIMINAR RUTA (REGLA NUZLOCKE)
+// ELIMINAR RUTA
 function removeUsedRoute(routeId) {
   const option = select.querySelector(`option[value="${routeId}"]`);
   if (option) option.remove();
+}
+
+// ACTUALIZAR ESTADO
+function updateStatus(id, newStatus) {
+  const pokemon = savedData.find(p => p.id === id);
+
+  if (!pokemon) return;
+
+  pokemon.status = newStatus;
+
+  saveToStorage();
+}
+
+// ELIMINAR POKÉMON
+function deletePokemon(id, cardElement) {
+  const pokemon = savedData.find(p => p.id === id);
+
+  if (!pokemon) return;
+
+  // restaurar ruta
+  restoreRoute(pokemon.routeId, pokemon.routeName);
+
+  // eliminar del array
+  savedData = savedData.filter(p => p.id !== id);
+
+  saveToStorage();
+
+  cardElement.remove();
+}
+
+function restoreRoute(routeId, routeName) {
+  const option = document.createElement('option');
+  option.value = routeId;
+  option.textContent = routeName;
+
+  select.appendChild(option);
 }
