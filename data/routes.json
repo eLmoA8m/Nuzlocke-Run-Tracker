@@ -76,5 +76,605 @@
         "name": "Route 112",
         "type": "route",
         "zone": "Hoenn"
+    },
+    {
+        "id": 13,
+        "name": "Petalburg City Area",
+        "type": "area",
+        "zone": "Hoenn"
+    },
+    {
+        "id": 14,
+        "name": "Slateport City Area",
+        "type": "area",
+        "zone": "Hoenn"
+    },
+    {
+        "id": 15,
+        "name": "Lilycove City Area",
+        "type": "area",
+        "zone": "Hoenn"
+    },
+    {
+        "id": 16,
+        "name": "Mossdeep City Area",
+        "type": "area",
+        "zone": "Hoenn"
+    },
+    {
+        "id": 17,
+        "name": "Sootopolis City Area",
+        "type": "area",
+        "zone": "Hoenn"
+    },
+    {
+        "id": 18,
+        "name": "Ever Grande City Area",
+        "type": "area",
+        "zone": "Hoenn"
+    },
+    {
+        "id": 19,
+        "name": "Meteor Falls Area",
+        "type": "area",
+        "zone": "Hoenn"
+    },
+    {
+        "id": 20,
+        "name": "Meteor Falls Back",
+        "type": "area",
+        "zone": "Hoenn"
+    },
+    {
+        "id": 21,
+        "name": "Meteor Falls B1F",
+        "type": "area",
+        "zone": "Hoenn"
+    },
+    {
+        "id": 22,
+        "name": "Meteor Falls Back Small Room",
+        "type": "area",
+        "zone": "Hoenn"
+    },
+    {
+        "id": 23,
+        "name": "Rusturf Tunnel Area",
+        "type": "area",
+        "zone": "Hoenn"
+    },
+    {
+        "id": 24,
+        "name": "Granite Cave 1F",
+        "type": "area",
+        "zone": "Hoenn"
+    },
+    {
+        "id": 25,
+        "name": "Granite Cave B1F",
+        "type": "area",
+        "zone": "Hoenn"
+    },
+    {
+        "id": 26,
+        "name": "Granite Cave B2F",
+        "type": "area",
+        "zone": "Hoenn"
+    },
+    {
+        "id": 27,
+        "name": "Granite Cave 1F Small Room",
+        "type": "area",
+        "zone": "Hoenn"
+    },
+    {
+        "id": 28,
+        "name": "Petalburg Woods Area",
+        "type": "area",
+        "zone": "Hoenn"
+    },
+    {
+        "id": 29,
+        "name": "Jagged Pass Area",
+        "type": "area",
+        "zone": "Hoenn"
+    },
+    {
+        "id": 30,
+        "name": "Fiery Path Area",
+        "type": "area",
+        "zone": "Hoenn"
+    },
+    {
+        "id": 31,
+        "name": "Mt Pyre 1F",
+        "type": "area",
+        "zone": "Hoenn"
+    },
+    {
+        "id": 32,
+        "name": "Mt Pyre 2F",
+        "type": "area",
+        "zone": "Hoenn"
+    },
+    {
+        "id": 33,
+        "name": "Mt Pyre 3F",
+        "type": "area",
+        "zone": "Hoenn"
+    },
+    {
+        "id": 34,
+        "name": "Mt Pyre 4F",
+        "type": "area",
+        "zone": "Hoenn"
+    },
+    {
+        "id": 35,
+        "name": "Mt Pyre 5F",
+        "type": "area",
+        "zone": "Hoenn"
+    },
+    {
+        "id": 36,
+        "name": "Mt Pyre 6F",
+        "type": "area",
+        "zone": "Hoenn"
+    },
+    {
+        "id": 37,
+        "name": "Mt Pyre Outside",
+        "type": "area",
+        "zone": "Hoenn"
+    },
+    {
+        "id": 38,
+        "name": "Mt Pyre Summit",
+        "type": "area",
+        "zone": "Hoenn"
+    },
+    {
+        "id": 39,
+        "name": "Seafloor Cavern Area",
+        "type": "area",
+        "zone": "Hoenn"
+    },
+    {
+        "id": 40,
+        "name": "Cave of Origin Entrance",
+        "type": "area",
+        "zone": "Hoenn"
+    },
+    {
+        "id": 41,
+        "name": "Cave of Origin 1F",
+        "type": "area",
+        "zone": "Hoenn"
+    },
+    {
+        "id": 42,
+        "name": "Cave of Origin B1F",
+        "type": "area",
+        "zone": "Hoenn"
+    },
+    {
+        "id": 43,
+        "name": "Cave of Origin B2F",
+        "type": "area",
+        "zone": "Hoenn"
+    },
+    {
+        "id": 44,
+        "name": "Cave of Origin B3F",
+        "type": "area",
+        "zone": "Hoenn"
+    },
+    {
+        "id": 45,
+        "name": "Hoenn Victory Road 1F",
+        "type": "area",
+        "zone": "Hoenn"
+    },
+    {
+        "id": 46,
+        "name": "Hoenn Victory Road B1F",
+        "type": "area",
+        "zone": "Hoenn"
+    },
+    {
+        "id": 47,
+        "name": "Hoenn Victory Road B2F",
+        "type": "area",
+        "zone": "Hoenn"
+    },
+    {
+        "id": 48,
+        "name": "Shoal Cave High Tide",
+        "type": "area",
+        "zone": "Hoenn"
+    },
+    {
+        "id": 49,
+        "name": "Shoal Cave B1F",
+        "type": "area",
+        "zone": "Hoenn"
+    },
+    {
+        "id": 50,
+        "name": "New Mauville Entrance",
+        "type": "area",
+        "zone": "Hoenn"
+    },
+    {
+        "id": 51,
+        "name": "New Mauville Area",
+        "type": "area",
+        "zone": "Hoenn"
+    },
+    {
+        "id": 52,
+        "name": "Abandoned Ship Area",
+        "type": "area",
+        "zone": "Hoenn"
+    },
+    {
+        "id": 53,
+        "name": "Sky Pillar 1F",
+        "type": "area",
+        "zone": "Hoenn"
+    },
+    {
+        "id": 54,
+        "name": "Sky Pillar 3F",
+        "type": "area",
+        "zone": "Hoenn"
+    },
+    {
+        "id": 55,
+        "name": "Sky Pillar 5F",
+        "type": "area",
+        "zone": "Hoenn"
+    },
+    {
+        "id": 56,
+        "name": "Hoenn Route 101 Area",
+        "type": "area",
+        "zone": "Hoenn"
+    },
+    {
+        "id": 57,
+        "name": "Hoenn Route 102 Area",
+        "type": "area",
+        "zone": "Hoenn"
+    },
+    {
+        "id": 58,
+        "name": "Hoenn Route 103 Area",
+        "type": "area",
+        "zone": "Hoenn"
+    },
+    {
+        "id": 59,
+        "name": "Hoenn Route 104 Area",
+        "type": "area",
+        "zone": "Hoenn"
+    },
+    {
+        "id": 60,
+        "name": "Hoenn Route 105 Area",
+        "type": "area",
+        "zone": "Hoenn"
+    },
+    {
+        "id": 61,
+        "name": "Hoenn Route 106 Area",
+        "type": "area",
+        "zone": "Hoenn"
+    },
+    {
+        "id": 62,
+        "name": "Hoenn Route 107 Area",
+        "type": "area",
+        "zone": "Hoenn"
+    },
+    {
+        "id": 63,
+        "name": "Hoenn Route 108 Area",
+        "type": "area",
+        "zone": "Hoenn"
+    },
+    {
+        "id": 64,
+        "name": "Hoenn Route 109 Area",
+        "type": "area",
+        "zone": "Hoenn"
+    },
+    {
+        "id": 65,
+        "name": "Hoenn Route 110 Area",
+        "type": "area",
+        "zone": "Hoenn"
+    },
+    {
+        "id": 66,
+        "name": "Hoenn Route 111 Area",
+        "type": "area",
+        "zone": "Hoenn"
+    },
+    {
+        "id": 67,
+        "name": "Hoenn Route 112 Area",
+        "type": "area",
+        "zone": "Hoenn"
+    },
+    {
+        "id": 68,
+        "name": "Hoenn Route 113 Area",
+        "type": "area",
+        "zone": "Hoenn"
+    },
+    {
+        "id": 69,
+        "name": "Hoenn Route 114 Area",
+        "type": "area",
+        "zone": "Hoenn"
+    },
+    {
+        "id": 70,
+        "name": "Hoenn Route 115 Area",
+        "type": "area",
+        "zone": "Hoenn"
+    },
+    {
+        "id": 71,
+        "name": "Hoenn Route 116 Area",
+        "type": "area",
+        "zone": "Hoenn"
+    },
+    {
+        "id": 72,
+        "name": "Hoenn Route 117 Area",
+        "type": "area",
+        "zone": "Hoenn"
+    },
+    {
+        "id": 73,
+        "name": "Hoenn Route 118 Area",
+        "type": "area",
+        "zone": "Hoenn"
+    },
+    {
+        "id": 74,
+        "name": "Hoenn Route 119 Area",
+        "type": "area",
+        "zone": "Hoenn"
+    },
+    {
+        "id": 75,
+        "name": "Hoenn Route 120 Area",
+        "type": "area",
+        "zone": "Hoenn"
+    },
+    {
+        "id": 76,
+        "name": "Hoenn Route 121 Area",
+        "type": "area",
+        "zone": "Hoenn"
+    },
+    {
+        "id": 77,
+        "name": "Hoenn Route 122 Area",
+        "type": "area",
+        "zone": "Hoenn"
+    },
+    {
+        "id": 78,
+        "name": "Hoenn Route 123 Area",
+        "type": "area",
+        "zone": "Hoenn"
+    },
+    {
+        "id": 79,
+        "name": "Hoenn Route 124 Area",
+        "type": "area",
+        "zone": "Hoenn"
+    },
+    {
+        "id": 80,
+        "name": "Hoenn Route 124 Underwater",
+        "type": "area",
+        "zone": "Hoenn"
+    },
+    {
+        "id": 81,
+        "name": "Hoenn Route 125 Area",
+        "type": "area",
+        "zone": "Hoenn"
+    },
+    {
+        "id": 82,
+        "name": "Hoenn Route 126 Area",
+        "type": "area",
+        "zone": "Hoenn"
+    },
+    {
+        "id": 83,
+        "name": "Hoenn Route 126 Underwater",
+        "type": "area",
+        "zone": "Hoenn"
+    },
+    {
+        "id": 84,
+        "name": "Hoenn Route 127 Area",
+        "type": "area",
+        "zone": "Hoenn"
+    },
+    {
+        "id": 85,
+        "name": "Hoenn Route 128 Area",
+        "type": "area",
+        "zone": "Hoenn"
+    },
+    {
+        "id": 86,
+        "name": "Hoenn Route 129 Area",
+        "type": "area",
+        "zone": "Hoenn"
+    },
+    {
+        "id": 87,
+        "name": "Hoenn Route 130 Area",
+        "type": "area",
+        "zone": "Hoenn"
+    },
+    {
+        "id": 88,
+        "name": "Hoenn Route 131 Area",
+        "type": "area",
+        "zone": "Hoenn"
+    },
+    {
+        "id": 89,
+        "name": "Hoenn Route 132 Area",
+        "type": "area",
+        "zone": "Hoenn"
+    },
+    {
+        "id": 90,
+        "name": "Hoenn Route 133 Area",
+        "type": "area",
+        "zone": "Hoenn"
+    },
+    {
+        "id": 91,
+        "name": "Hoenn Route 134 Area",
+        "type": "area",
+        "zone": "Hoenn"
+    },
+    {
+        "id": 92,
+        "name": "Hoenn Safari Zone NW Mach Bike Area",
+        "type": "area",
+        "zone": "Hoenn"
+    },
+    {
+        "id": 93,
+        "name": "Hoenn Safari Zone NE Acro Bike Area",
+        "type": "area",
+        "zone": "Hoenn"
+    },
+    {
+        "id": 94,
+        "name": "Hoenn Safari Zone SW",
+        "type": "area",
+        "zone": "Hoenn"
+    },
+    {
+        "id": 95,
+        "name": "Hoenn Safari Zone SE",
+        "type": "area",
+        "zone": "Hoenn"
+    },
+    {
+        "id": 96,
+        "name": "Dewford Town Area",
+        "type": "area",
+        "zone": "Hoenn"
+    },
+    {
+        "id": 97,
+        "name": "Pacifidlog Town Area",
+        "type": "area",
+        "zone": "Hoenn"
+    },
+    {
+        "id": 98,
+        "name": "Hoenn Safari Zone Expansion South",
+        "type": "area",
+        "zone": "Hoenn"
+    },
+    {
+        "id": 99,
+        "name": "Hoenn Safari Zone Expansion North",
+        "type": "area",
+        "zone": "Hoenn"
+    },
+    {
+        "id": 100,
+        "name": "Magma Hideout Area",
+        "type": "area",
+        "zone": "Hoenn"
+    },
+    {
+        "id": 101,
+        "name": "Mirage Tower Area",
+        "type": "area",
+        "zone": "Hoenn"
+    },
+    {
+        "id": 102,
+        "name": "Desert Underpass Area",
+        "type": "area",
+        "zone": "Hoenn"
+    },
+    {
+        "id": 103,
+        "name": "Artisan Cave Area",
+        "type": "area",
+        "zone": "Hoenn"
+    },
+    {
+        "id": 104,
+        "name": "Hoenn Altering Cave Area",
+        "type": "area",
+        "zone": "Hoenn"
+    },
+    {
+        "id": 105,
+        "name": "Hoenn Route 119 Weather Institute",
+        "type": "area",
+        "zone": "Hoenn"
+    },
+    {
+        "id": 106,
+        "name": "Mossdeep City Stevens House",
+        "type": "area",
+        "zone": "Hoenn"
+    },
+    {
+        "id": 107,
+        "name": "Littleroot Town Area",
+        "type": "area",
+        "zone": "Hoenn"
+    },
+    {
+        "id": 108,
+        "name": "Southern Island Area",
+        "type": "area",
+        "zone": "Hoenn"
+    },
+    {
+        "id": 109,
+        "name": "Lavaridge Town Area",
+        "type": "area",
+        "zone": "Hoenn"
+    },
+    {
+        "id": 110,
+        "name": "Roaming Hoenn Area",
+        "type": "area",
+        "zone": "Hoenn"
+    },
+    {
+        "id": 111,
+        "name": "Terra Cave Area",
+        "type": "area",
+        "zone": "Hoenn"
+    },
+    {
+        "id": 112,
+        "name": "Marine Cave Area",
+        "type": "area",
+        "zone": "Hoenn"
     }
 ]
