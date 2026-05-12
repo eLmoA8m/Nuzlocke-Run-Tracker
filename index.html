@@ -98,6 +98,43 @@
         ::-webkit-scrollbar-thumb:hover {
             background: var(--neon-cyan);
         }
+
+        dialog::backdrop {
+            background: rgba(0, 0, 0, 0.85);
+            backdrop-filter: blur(4px);
+        }
+
+        dialog[open] {
+            animation: modalIn 0.3s ease-out;
+            margin: auto;
+        }
+
+        @keyframes modalIn {
+            from {
+                opacity: 0;
+                transform: scale(0.9) translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1) translateY(0);
+            }
+        }
+
+        .modal-animate {
+            animation: modalIn 0.3s ease-out;
+        }
+
+        .clickable-card {
+            cursor: pointer;
+        }
+
+        .clickable-card:hover .pokemon-image {
+            transform: scale(1.1);
+        }
+
+        .pokemon-image {
+            transition: transform 0.3s ease;
+        }
     </style>
 </head>
 
@@ -187,6 +224,32 @@
     <footer class="border-t border-[#2d2d44] mt-12 py-6 text-center">
         <p class="text-xs text-gray-500 tracking-wide">NuzTrack • Nuzlocke Run Tracker</p>
     </footer>
+
+    <!-- ===== MODAL ===== -->
+    <dialog id="pokemon-modal" class="bg-[#1a1a2e] border border-[#2d2d44] rounded-2xl p-6 max-w-2xl w-[90%] md:w-full mx-auto backdrop:bg-black/70 backdrop:backdrop-blur-sm modal-animate">
+        <div class="flex justify-between items-start mb-6">
+            <h2 id="modal-pokemon-name" class="font-display text-2xl font-bold text-white capitalize">Pokemon</h2>
+            <button id="modal-close" class="text-gray-400 hover:text-[#f72585] transition-colors text-2xl leading-none">&times;</button>
+        </div>
+        
+        <div class="grid md:grid-cols-2 gap-6">
+            <!-- Evolutions -->
+            <div>
+                <h3 class="font-display text-sm text-[#00f5d4] uppercase tracking-wider mb-3">Evolutions</h3>
+                <div id="modal-evolutions" class="flex flex-wrap gap-3 justify-center">
+                    <span class="text-gray-500">Loading...</span>
+                </div>
+            </div>
+            
+            <!-- Moves -->
+            <div>
+                <h3 class="font-display text-sm text-[#00f5d4] uppercase tracking-wider mb-3">Moves (Ruby/Emerald)</h3>
+                <div id="modal-moves" class="bg-[#0d0d1a] rounded-lg p-3 max-h-64 overflow-y-auto">
+                    <span class="text-gray-500">Loading...</span>
+                </div>
+            </div>
+        </div>
+    </dialog>
 
     <!-- ===== TEMPLATE CARD ===== -->
     <template id="card-template">

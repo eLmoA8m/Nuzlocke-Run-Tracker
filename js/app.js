@@ -160,7 +160,7 @@ form.addEventListener('submit', async (e) => {
   }
 });
 
-// RENDER CARD
+// RENDER CARD 
 function renderCard({id, name, sprite, routeName, status }) {
   const div = document.createElement('div');
 
@@ -176,17 +176,17 @@ function renderCard({id, name, sprite, routeName, status }) {
     boxed: '▢ BOXED'
   };
 
-  div.className = "bg-[#1a1a2e] border border-[#2d2d44] rounded-2xl p-5 text-center card-animate hover:border-[#00f5d4]/50 transition-all duration-300 group";
+  div.className = "bg-[#1a1a2e] border border-[#2d2d44] rounded-2xl p-5 text-center card-animate hover:border-[#00f5d4]/50 transition-all duration-300 group clickable-card";
 
   div.innerHTML = `
     <div class="relative mb-3">
-      <img src="${sprite}" class="w-24 mx-auto group-hover:scale-110 transition-transform duration-300" alt="${name}">
+      <img src="${sprite}" class="w-24 mx-auto pokemon-image" alt="${name}">
     </div>
     <h3 class="font-display font-bold text-lg text-white capitalize">${name}</h3>
     <p class="text-sm text-gray-400 mb-3">${routeName}</p>
     <span class="status text-sm font-semibold uppercase tracking-wider ${statusClasses[status]}">${statusLabels[status]}</span>
     
-    <div class="flex gap-2 mt-4 justify-center">
+    <div class="flex gap-2 mt-4 justify-center" onclick="event.stopPropagation()">
       <select class="status-select bg-[#0d0d1a] border border-[#2d2d44] rounded px-2 py-1 text-xs text-gray-300">
         <option value="alive" ${status === 'alive' ? 'selected' : ''}>Alive</option>
         <option value="dead" ${status === 'dead' ? 'selected' : ''}>Dead</option>
@@ -197,6 +197,11 @@ function renderCard({id, name, sprite, routeName, status }) {
       </button>
     </div>
   `;
+
+  // EVENT: click en tarjeta abre modal
+  div.addEventListener('click', () => {
+    openPokemonModal(name);
+  });
 
   // EVENT: cambiar estado
   const selectStatus = div.querySelector('.status-select');
@@ -216,6 +221,133 @@ function renderCard({id, name, sprite, routeName, status }) {
 
   cards.appendChild(div);
   updateStats();
+}
+
+// MODAL FUNCTIONS
+const modal = document.getElementById('pokemon-modal');
+const modalClose = document.getElementById('modal-close');
+const modalName = document.getElementById('modal-pokemon-name');
+const modalEvolutions = document.getElementById('modal-evolutions');
+const modalMoves = document.getElementById('modal-moves');
+
+modalClose.addEventListener('click', () => modal.close());
+
+modal.addEventListener('click', (e) => {
+  if (e.target === modal) modal.close();
+});
+
+async function openPokemonModal(pokemonName) {
+  modalName.textContent = pokemonName;
+  modalEvolutions.innerHTML = '<span class="text-gray-500">Loading...</span>';
+  modalMoves.innerHTML = '<span class="text-gray-500">Loading...</span>';
+  
+  modal.showModal();
+
+  const [evolutions, moves] = await Promise.all([
+    getEvolutions(pokemonName),
+    getPokemonMoves(pokemonName)
+  ]);
+
+  renderEvolutions(evolutions, pokemonName);
+  renderMoves(moves);
+}
+
+async function getEvolutions(pokemon) {
+  try {
+    const speciesRes = await fetch(`https://pokeapi.co/api/v2/pokemon-species/${pokemon}`);
+    const speciesData = await speciesRes.json();
+
+    const evoRes = await fetch(speciesData.evolution_chain.url);
+    const evoData = await evoRes.json();
+
+    const result = [];
+
+    function traverse(chain) {
+      result.push(chain.species.name);
+      chain.evolves_to.forEach(traverse);
+    }
+
+    traverse(evoData.chain);
+    return result;
+  } catch (e) {
+    return [pokemon];
+  }
+}
+
+async function getPokemonMoves(pokemon) {
+  try {
+    const res = await fetch(`https://pokeapi.co/api/v2/pokemon/${pokemon}`);
+    const data = await res.json();
+
+    return data.moves
+      .flatMap(m => 
+        m.version_group_details.map(v => ({
+          name: m.move.name,
+          level: v.level_learned_at,
+          method: v.move_learn_method.name,
+          version: v.version_group.name
+        }))
+      )
+      .filter(m =>
+        m.method === "level-up" &&
+        (m.version === "emerald" || m.version === "ruby-sapphire")
+      )
+      .sort((a, b) => a.level - b.level);
+  } catch (e) {
+    return [];
+  }
+}
+
+async function renderEvolutions(evolutionList, currentPokemon) {
+  modalEvolutions.innerHTML = '';
+  
+  for (const evoName of evolutionList) {
+    const res = await fetch(`https://pokeapi.co/api/v2/pokemon/${evoName}`);
+    const data = await res.json();
+    
+    const div = document.createElement('div');
+    div.className = 'text-center';
+    
+    if (evoName !== currentPokemon) {
+      div.className += ' cursor-pointer hover:scale-110 transition-transform';
+      div.onclick = () => openPokemonModal(evoName);
+    }
+    
+    const img = document.createElement('img');
+    img.src = data.sprites.front_default;
+    img.alt = evoName;
+    img.className = 'w-16 h-16 mx-auto';
+    
+    const p = document.createElement('p');
+    p.textContent = evoName;
+    p.className = 'text-xs text-gray-300 capitalize mt-1';
+    
+    div.appendChild(img);
+    div.appendChild(p);
+    modalEvolutions.appendChild(div);
+    
+    const idx = evolutionList.indexOf(evoName);
+    if (idx < evolutionList.length - 1) {
+      const arrow = document.createElement('div');
+      arrow.textContent = '→';
+      arrow.className = 'text-[#00f5d4] text-xl self-center';
+      modalEvolutions.appendChild(arrow);
+    }
+  }
+}
+
+function renderMoves(moves) {
+  if (moves.length === 0) {
+    modalMoves.innerHTML = '<span class="text-gray-500">No moves found</span>';
+    return;
+  }
+
+  modalMoves.innerHTML = moves.map(m => `
+    <div class="flex justify-between items-center py-1 border-b border-[#2d2d44] last:border-0">
+      <span class="text-gray-300 capitalize">${m.name.replace('-', ' ')}</span>
+      <span class="text-[#00f5d4] text-xs">Lv. ${m.level}</span>
+    </div>
+  `).join('');
 }
 
 // ELIMINAR RUTA
