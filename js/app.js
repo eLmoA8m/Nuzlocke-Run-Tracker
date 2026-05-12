@@ -58,6 +58,7 @@ function restoreState() {
     renderCard(entry);
     removeUsedRoute(entry.routeId);
   });
+  updateStats();
 }
 
 // INPUT EVENT (AUTOCOMPLETE)
@@ -88,7 +89,7 @@ function renderList(names) {
   names.forEach(name => {
     const li = document.createElement('li');
     li.textContent = name;
-    li.className = "p-2 hover:bg-gray-100 cursor-pointer capitalize";
+    li.className = "p-3 hover:bg-[#00f5d4]/10 cursor-pointer capitalize text-gray-300 hover:text-[#00f5d4] transition-colors duration-200 border-b border-[#2d2d44] last:border-b-0";
 
     li.addEventListener('click', () => {
       selectPokemon(name);
@@ -130,6 +131,7 @@ form.addEventListener('submit', async (e) => {
     const pokemon = await getPokemonData(pokemonName);
 
     const entry = {
+      id: Date.now(),
       routeId,
       routeName,
       name: pokemon.name,
@@ -162,34 +164,48 @@ form.addEventListener('submit', async (e) => {
 function renderCard({id, name, sprite, routeName, status }) {
   const div = document.createElement('div');
 
-  const statusColor = {
-    alive: 'text-green-600',
-    dead: 'text-red-600',
-    boxed: 'text-gray-500'
+  const statusClasses = {
+    alive: 'status-alive',
+    dead: 'status-dead',
+    boxed: 'status-boxed'
   };
 
-  div.className = "bg-white rounded-xl shadow p-4 text-center";
+  const statusLabels = {
+    alive: '● ALIVE',
+    dead: '✕ DEAD',
+    boxed: '▢ BOXED'
+  };
+
+  div.className = "bg-[#1a1a2e] border border-[#2d2d44] rounded-2xl p-5 text-center card-animate hover:border-[#00f5d4]/50 transition-all duration-300 group";
 
   div.innerHTML = `
-    <img src="${sprite}" class="w-20 mx-auto mb-2">
-    <h3 class="font-bold text-lg capitalize">${name}</h3>
-    <p class="text-sm text-gray-500">${routeName}</p>
-
-    <select class="status-select border rounded p-1 mt-2">
-      <option value="alive" ${status === 'alive' ? 'selected' : ''}>Alive</option>
-      <option value="dead" ${status === 'dead' ? 'selected' : ''}>Dead</option>
-      <option value="boxed" ${status === 'boxed' ? 'selected' : ''}>Boxed</option>
-    </select>
-
-    <button class="delete-btn mt-3 bg-red-500 text-white px-3 py-1 rounded">
-      Delete
-    </button>
+    <div class="relative mb-3">
+      <img src="${sprite}" class="w-24 mx-auto group-hover:scale-110 transition-transform duration-300" alt="${name}">
+    </div>
+    <h3 class="font-display font-bold text-lg text-white capitalize">${name}</h3>
+    <p class="text-sm text-gray-400 mb-3">${routeName}</p>
+    <span class="status text-sm font-semibold uppercase tracking-wider ${statusClasses[status]}">${statusLabels[status]}</span>
+    
+    <div class="flex gap-2 mt-4 justify-center">
+      <select class="status-select bg-[#0d0d1a] border border-[#2d2d44] rounded px-2 py-1 text-xs text-gray-300">
+        <option value="alive" ${status === 'alive' ? 'selected' : ''}>Alive</option>
+        <option value="dead" ${status === 'dead' ? 'selected' : ''}>Dead</option>
+        <option value="boxed" ${status === 'boxed' ? 'selected' : ''}>Boxed</option>
+      </select>
+      <button class="delete-btn bg-[#f72585]/20 text-[#f72585] border border-[#f72585]/50 px-3 py-1 rounded hover:bg-[#f72585] hover:text-white transition-all duration-300 text-xs">
+        DELETE
+      </button>
+    </div>
   `;
 
-    // EVENT: cambiar estado
+  // EVENT: cambiar estado
   const selectStatus = div.querySelector('.status-select');
   selectStatus.addEventListener('change', (e) => {
     updateStatus(id, e.target.value);
+    const span = div.querySelector('.status');
+    span.className = `status text-sm font-semibold uppercase tracking-wider ${statusClasses[e.target.value]}`;
+    span.textContent = statusLabels[e.target.value];
+    updateStats();
   });
 
   // EVENT: eliminar
@@ -198,8 +214,8 @@ function renderCard({id, name, sprite, routeName, status }) {
     deletePokemon(id, div);
   });
 
-
   cards.appendChild(div);
+  updateStats();
 }
 
 // ELIMINAR RUTA
@@ -217,6 +233,7 @@ function updateStatus(id, newStatus) {
   pokemon.status = newStatus;
 
   saveToStorage();
+  updateStats();
 }
 
 // ELIMINAR POKÉMON
@@ -234,6 +251,7 @@ function deletePokemon(id, cardElement) {
   saveToStorage();
 
   cardElement.remove();
+  updateStats();
 }
 
 function restoreRoute(routeId, routeName) {
@@ -242,4 +260,15 @@ function restoreRoute(routeId, routeName) {
   option.textContent = routeName;
 
   select.appendChild(option);
+}
+
+// UPDATE STATS
+function updateStats() {
+  const total = savedData.length;
+  const alive = savedData.filter(p => p.status === 'alive').length;
+  const dead = savedData.filter(p => p.status === 'dead').length;
+
+  document.getElementById('stat-total').textContent = total;
+  document.getElementById('stat-alive').textContent = alive;
+  document.getElementById('stat-dead').textContent = dead;
 }
